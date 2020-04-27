@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Refresh" content="15"/>
+    {% block title %}<title>Мониторинг Восточная Сибирь</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<tr>Последнее обновление {{time}}</tr>
+
+{% block content %}
+
+<table>
+    {% for entry in kod.items %}
+    <tr>
+        <!--        <td>{{entry.1}}</td>-->
+        {% for v in entry.1 %}
+        <td>{{v.0}}</td>
+        <td>{{v.1}}</td>
+        <td>{{v.2}}</td>
+        <td>{{v.3}}</td>
+        <td> |</td>
+        <td> |</td>
+        <td> |</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+</html>
