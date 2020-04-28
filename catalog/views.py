@@ -9,9 +9,9 @@ global stat, dat
 def open_all():
     global stat, dat
 
-    with open(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\stat.json', 'rb') as f:
+    with open(r'C:\GitHub\snmpvs\stat.json', 'rb') as f:
         stat = json.load(f)
-    with open(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\dat.json', 'rb') as f:
+    with open(r'C:\GitHub\snmpvs\dat.json', 'rb') as f:
         dat = json.load(f)
 
 def data_monitor():
