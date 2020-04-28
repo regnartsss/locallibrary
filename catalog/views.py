@@ -48,10 +48,10 @@ def index(request):
                     if dat[str(k)]["ISP2"] == "unassigned":
                         ch2 = "⚪"
                     try:
-                        s[tab].append([k, dat[str(k)]["name"], ch1, ch2])
+                        s[tab].append([ch1, ch2, k, dat[str(k)]["name"]])
                     except:
                         s[tab] = []
-                        s[tab].append([k, dat[str(k)]["name"], ch1, ch2])
+                        s[tab].append([ch1, ch2, k, dat[str(k)]["name"]])
                     r += 1
                     if r in col:
                         tab += 1
