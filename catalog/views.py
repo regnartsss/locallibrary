@@ -43,6 +43,10 @@ def index(request):
                         ch2 = "🔵"
                     elif v["status_t2"] == 0:
                         ch2 = "🔴"
+                    if dat[str(k)]["ISP1"] == "unassigned":
+                        ch1 = "⚪"
+                    if dat[str(k)]["ISP2"] == "unassigned":
+                        ch2 = "⚪"
                     try:
                         s[tab].append([k, dat[str(k)]["name"], ch1, ch2])
                     except:
