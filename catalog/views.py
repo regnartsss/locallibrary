@@ -29,7 +29,7 @@ def index(request):
     # print(req)
     rows = sql_select(req)
     for row in rows:
-        print(row)
+        # print(row)
         st1, st2 = status(row[3], row[4], row[5], row[6])
         temp = [row[0], row[2], st1, st2]
         if row[1] == 0:
@@ -84,7 +84,7 @@ def index(request):
     sort = sorted(le.items(), key=lambda k: -k[1])
     ll = sort[0][1]
     sort = sorted(le.items(), key=lambda k: k[0])
-    print(ll)
+    # print(ll)
     kod = s
     i = 0
     tab = {}
@@ -95,9 +95,9 @@ def index(request):
             tab[i] = []
             # print(sort)
         for ss in sort:
-            print(ss)
+            # print(ss)
             # print(s[ss[0]])
-            print(s[ss[0]][0])
+            # print(s[ss[0]][0])
             try:
                 tab[i].append(s[ss[0]][i])
 # #                 print(stat[s[ss[0]][i]])
