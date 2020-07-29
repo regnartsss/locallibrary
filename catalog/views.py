@@ -9,7 +9,7 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
     cursor = conn.cursor()
     cursor.execute(request)
     rows = cursor.fetchall()
