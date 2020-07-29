@@ -10,6 +10,8 @@ import sqlite3
 
 def sql_select(request):
     conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+
     cursor = conn.cursor()
     cursor.execute(request)
     rows = cursor.fetchall()
@@ -78,35 +80,38 @@ def index(request):
     # print(s)
 
     # kod = s
-    le = {}
-    for l in s:
-        le[l] = len(s[l])
-    sort = sorted(le.items(), key=lambda k: -k[1])
-    ll = sort[0][1]
-    sort = sorted(le.items(), key=lambda k: k[0])
-    # print(ll)
-    kod = s
-    i = 0
-    tab = {}
-    while i < ll:
-        try:
-            tab[i]
-        except KeyError:
-            tab[i] = []
-            # print(sort)
-        for ss in sort:
-            # print(ss)
-            # print(s[ss[0]])
-            # print(s[ss[0]][0])
-            try:
-                tab[i].append(s[ss[0]][i])
-# #                 print(stat[s[ss[0]][i]])
-# #                 status(tab[i], stat[s[ss[0]][i]], s[ss[0]][i])
-            except IndexError:
-                tab[i].append("")
-        i += 1
+#     le = {}
+#     for l in s:
+#         le[l] = len(s[l])
+#     sort = sorted(le.items(), key=lambda k: -k[1])
+#     ll = sort[0][1]
+#     print(s)
+    kod = sorted(s.items(), key=lambda k: k)
+    print(kod)
+    # print(kod)
+#     # print(ll)
+#     kod = s
+#     i = 0
+#     tab = {}
+#     while i < ll:
+#         try:
+#             tab[i]
+#         except KeyError:
+#             tab[i] = []
+#             # print(sort)
+#         for ss in sort:
+#             # print(ss)
+#             # print(s[ss[0]])
+#             # print(s[ss[0]][0])
+#             try:
+#                 tab[i].append(s[ss[0]][i])
+# # #                 print(stat[s[ss[0]][i]])
+# # #                 status(tab[i], stat[s[ss[0]][i]], s[ss[0]][i])
+#             except IndexError:
+#                 tab[i].append("")
+#         i += 1
 # # #     # print(tab)
-    kod = tab
+#     kod = tab
 
     return render(
         request,
