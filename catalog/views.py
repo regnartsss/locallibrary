@@ -87,7 +87,7 @@ def index(request):
 #     ll = sort[0][1]
 #     print(s)
     kod = sorted(s.items(), key=lambda k: k)
-    print(kod)
+    # print(kod)
     # print(kod)
 #     # print(ll)
 #     kod = s
