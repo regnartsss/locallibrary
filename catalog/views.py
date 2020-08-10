@@ -126,11 +126,11 @@ def index(request):
 def status(s1, s2, ISP1, ISP2):
     ch1, ch2 = '🟡','🟡'
     if s1 == 1:
-        ch1 = "🟢"
+        ch1 = "🔵"
     elif s1 == 0:
         ch1 = "🔴"
     if s2 == 1:
-        ch2 = "🟢"
+        ch2 = "🔵"
     elif s2 == 0:
         ch2 = "🔴"
     if ISP1 == "unassigned":
