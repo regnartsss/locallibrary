@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
 
     cursor = conn.cursor()
     cursor.execute(request)
@@ -33,7 +33,7 @@ def index(request):
     for row in rows:
         # print(row)
         st1, st2 = status(row[3], row[4], row[5], row[6])
-        temp = [row[0], row[2], st1, st2]
+        temp = [st1, st2, row[0], row[2]]
         if row[1] == 0:
             try:
                 s[0].append(temp)
@@ -79,14 +79,14 @@ def index(request):
 
     # print(s)
 
-    # kod = s
+    kod = s
 #     le = {}
 #     for l in s:
 #         le[l] = len(s[l])
 #     sort = sorted(le.items(), key=lambda k: -k[1])
 #     ll = sort[0][1]
 #     print(s)
-    kod = sorted(s.items(), key=lambda k: k)
+    # kod = sorted(s.items(), key=lambda k: k)
     # print(kod)
     # print(kod)
 #     # print(ll)
@@ -126,11 +126,11 @@ def index(request):
 def status(s1, s2, ISP1, ISP2):
     ch1, ch2 = '🟡','🟡'
     if s1 == 1:
-        ch1 = "🔵"
+        ch1 = "🟢"
     elif s1 == 0:
         ch1 = "🔴"
     if s2 == 1:
-        ch2 = "🔵"
+        ch2 = "🟢"
     elif s2 == 0:
         ch2 = "🔴"
     if ISP1 == "unassigned":
