@@ -13,29 +13,51 @@
         его нет</i> </p>
     <p> </p>
     <p> </p>
-    {% block content %}
+
+{% block content %}
+<table>
+
     {% for entry in kod %}
     <td valign="top">
 <!--        {{entry}}-->
 <!--        <td>{{entry.1}}</td>-->
 <!--        <tr>-->
         {% for v in entry.1 %}
-<!--           {{v}}-->
-<!--        <big><big>-->
-<!--        <td>{{v}}</td>-->
+<!--&lt;!&ndash;        <big><big>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td>{{v}}</td>&ndash;&gt;-->
         ||
-            {{v.2}}
-            {{v.3}}
             {{v.0}}
             {{v.1}}
+            {{v.2}}
+            {{v.3}}
             <br>
 <!--        </tr>-->
+
 <!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
 <!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
 <!--        </big></big>-->
         {% endfor %}
-</td>
+
     {% endfor %}
 </table>
 <!--<table>-->
 <!--    {% for entry in kod.items %}-->
+<!--    <tr>-->
+<!--&lt;!&ndash;        <td>{{entry.1}}</td>&ndash;&gt;-->
+<!--        {% for v in entry.1 %}-->
+<!--        <big><big>-->
+<!--        <td>{{v.0}}</td>-->
+<!--        <td>{{v.1}}</td>-->
+<!--        <td>{{v.2}}</td>-->
+<!--        <td>{{v.3}}</td>-->
+<!--        <td> |</td>-->
+<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
+<!--        </big></big>-->
+<!--        {% endfor %}-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+
+{% endblock %}
+<!--</html>-->

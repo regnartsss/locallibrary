@@ -79,14 +79,14 @@ def index(request):
 
     # print(s)
 
-    kod = s
+    # kod = s
 #     le = {}
 #     for l in s:
 #         le[l] = len(s[l])
 #     sort = sorted(le.items(), key=lambda k: -k[1])
 #     ll = sort[0][1]
 #     print(s)
-    # kod = sorted(s.items(), key=lambda k: k)
+    kod = sorted(s.items(), key=lambda k: k)
     # print(kod)
     # print(kod)
 #     # print(ll)
