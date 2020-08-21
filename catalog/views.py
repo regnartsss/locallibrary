@@ -35,7 +35,7 @@ def index(request):
         # print(row)
         name = f"{row[0]} {row[2]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
-        temp = [sd, st1, st2, name[:25]]
+        temp = [sd, st1, st2, name[:22]]
         if row[1] == 0:
             try:
                 s[0].append(temp)
