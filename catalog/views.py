@@ -27,13 +27,15 @@ def index(request):
     tab = 0
     s = {}
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
-    req = "SELECT filial.kod, region, name, status_1, status_2, ISP1, ISP2,sdwan  FROM filial LEFT JOIN status ON filial.kod = status.kod ORDER BY name"
+    req = "SELECT filial.kod, region, name, status_1, status_2, ISP1, ISP2,sdwan  FROM filial LEFT JOIN status " \
+          "ON filial.kod = status.kod ORDER BY name"
     # print(req)
     rows = sql_select(req)
     for row in rows:
         # print(row)
+        name = row[2]
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
-        temp = [sd, st1, st2, row[0][20:], row[2]]
+        temp = [sd, st1, st2, row[0], name[20:]]
         if row[1] == 0:
             try:
                 s[0].append(temp)
@@ -124,7 +126,7 @@ def index(request):
 
 
 def status(s1, s2, ISP1, ISP2, sdwan):
-    ch1, ch2 = '🟡','🟡'
+    ch1, ch2, sd = '🟡','🟡', "⚪"
     if s1 == 1:
         ch1 = "🔵"
     elif s1 == 0:
@@ -139,8 +141,6 @@ def status(s1, s2, ISP1, ISP2, sdwan):
         ch2 = "⚪"
     if sdwan == 1:
         sd = "⚫"
-    elif sdwan == 0:
-        sd = "⚪"
     return ch1, ch2, sd
 
 
