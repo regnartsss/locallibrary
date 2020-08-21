@@ -33,7 +33,7 @@ def index(request):
     for row in rows:
         # print(row)
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
-        temp = [sd, st1, st2, row[0], row[2]]
+        temp = [sd, st1, st2, row[0][20:], row[2]]
         if row[1] == 0:
             try:
                 s[0].append(temp)
