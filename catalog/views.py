@@ -140,7 +140,8 @@ def status(s1, s2, ISP1, ISP2, sdwan):
     if ISP2 == "unassigned":
         ch2 = "⚪"
     if sdwan == 1:
-        sd = "⚫"
+        sd = "❌"
+        # "⚫"
     return ch1, ch2, sd
 
 
