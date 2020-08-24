@@ -32,7 +32,8 @@ def index(request):
     # print(req)
     rows = sql_select(req)
     for row in rows:
-        rows = f"SELECT down FROM registrator WHERE kod = {row[0]}"
+        requ = f"SELECT down FROM registrator WHERE kod = {row[0]}"
+        rows = sql_select(requ)
         reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
@@ -40,19 +41,22 @@ def index(request):
         if row[1] == 0:
             try:
                 s[0].append(temp)
-            except:
+            except Exception as n:
+                print(n)
                 s[0] = []
                 s[0].append(temp)
         elif row[1] == 1:
             try:
                 s[1].append(temp)
-            except:
+            except Exception as n:
+                print(n)
                 s[1] = []
                 s[1].append(temp)
         elif row[1] == 2:
             try:
                 s[2].append(temp)
-            except:
+            except Exception as n:
+                print(n)
                 s[2] = []
                 s[2].append(temp)
         elif row[1] == 3:
@@ -79,43 +83,7 @@ def index(request):
             except:
                 s[7] = []
                 s[7].append(temp)
-
-    # print(s)
-
-    # kod = s
-#     le = {}
-#     for l in s:
-#         le[l] = len(s[l])
-#     sort = sorted(le.items(), key=lambda k: -k[1])
-#     ll = sort[0][1]
-#     print(s)
     kod = sorted(s.items(), key=lambda k: k)
-    # print(kod)
-    # print(kod)
-#     # print(ll)
-#     kod = s
-#     i = 0
-#     tab = {}
-#     while i < ll:
-#         try:
-#             tab[i]
-#         except KeyError:
-#             tab[i] = []
-#             # print(sort)
-#         for ss in sort:
-#             # print(ss)
-#             # print(s[ss[0]])
-#             # print(s[ss[0]][0])
-#             try:
-#                 tab[i].append(s[ss[0]][i])
-# # #                 print(stat[s[ss[0]][i]])
-# # #                 status(tab[i], stat[s[ss[0]][i]], s[ss[0]][i])
-#             except IndexError:
-#                 tab[i].append("")
-#         i += 1
-# # #     # print(tab)
-#     kod = tab
-
     return render(
         request,
         'index.html',
@@ -123,7 +91,6 @@ def index(request):
     )
 
 
-# index()
 def registrator(rows):
     print(rows)
     st = ""
