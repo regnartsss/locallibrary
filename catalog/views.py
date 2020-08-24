@@ -125,6 +125,7 @@ def index(request):
 
 # index()
 def registrator(rows):
+    print(rows)
     st = ""
     for row in rows:
         if row == 1:
