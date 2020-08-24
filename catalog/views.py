@@ -32,10 +32,11 @@ def index(request):
     # print(req)
     rows = sql_select(req)
     for row in rows:
-        # print(row)
+        rows = f"SELECT down FROM registrator WHERE kod = {row[0]}"
+        reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
-        temp = [sd, st1, st2, name[:22]]
+        temp = [sd, st1, st2, name[:22], reg]
         if row[1] == 0:
             try:
                 s[0].append(temp)
@@ -123,7 +124,14 @@ def index(request):
 
 
 # index()
-
+def registrator(rows):
+    st = ""
+    for row in rows:
+        if row == 1:
+            st += "🟥"
+        else:
+            st += "🟩"
+    return st
 
 def status(s1, s2, ISP1, ISP2, sdwan):
     ch1, ch2, sd = '🟡','🟡', "⚪"
