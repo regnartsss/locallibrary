@@ -129,9 +129,10 @@ def registrator(rows):
     for row in rows:
         if row == 1:
             st += "🟥"
-        else:
+        elif row == 0:
             st += "🟩"
     return st
+
 
 def status(s1, s2, ISP1, ISP2, sdwan):
     ch1, ch2, sd = '🟡','🟡', "⚪"
