@@ -35,7 +35,7 @@ def index(request):
         # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
         # reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
-        name = f" {name[:20]}"
+        name = f" {name[:23]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name]
         if row[1] == 0:
