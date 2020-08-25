@@ -95,7 +95,7 @@ def index(request):
         else:
             cam = "🟨"
         if row[2] == 1:
-            reg, d = "🟥", "🟥"
+            reg, d, cam = "🟥", "🟥",  "🟥"
         else:
             reg = registrator(row[2])
             d = disk(row[3])
