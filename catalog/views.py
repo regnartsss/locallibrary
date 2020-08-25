@@ -95,7 +95,10 @@ def index(request):
         else:
             reg = registrator(row[2])
             d = disk(row[3])
+
             c = cam(row[5], row[6])
+            if reg == "⬜️":
+                c = "⬜️"
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = name.split()
@@ -142,6 +145,7 @@ def disk(row):
     else:
         st += "⬜️"
     return st
+
 
 def registrator(row):
     st = ""
