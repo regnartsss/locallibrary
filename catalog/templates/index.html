@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 {% block content %}
-
+<style>
+p {
+ font-size: 11pt;
+}
+</style>
 <table>
     {% for entry in kod %}
     <td valign="top">
@@ -53,6 +57,7 @@
 </table>
 
 {% endblock %}
+
 <body>
     <p>Последнее обновление {{time}} <i>🔵 - Провайдер работает, 🔴 - Провайдер не работает, ⚪ - Провайдер не настроен или
         его нет, "⚫" - SDWAN</i> </p>
