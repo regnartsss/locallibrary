@@ -93,7 +93,7 @@ def index(request):
         if row[5] == row[6]:
             cam = "🟩"
         else:
-            cam = "🟧"
+            cam = "🟨"
         if row[2] == 1:
             reg, d = "🟥", "🟥"
         else:
@@ -101,7 +101,7 @@ def index(request):
             d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:18]}"
+        name = f" {name[:17]}"
         temp = [name, reg, d, row[4], cam]
         if i == num:
             i = 0
