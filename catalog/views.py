@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
 
     cursor = conn.cursor()
     cursor.execute(request)
@@ -96,7 +96,7 @@ def index(request):
         reg = f"\n {registrator(row[2])}"
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:10]}"
+        name = f" {name[:15]}"
         temp = [name, reg]
         if i == num:
             i = 0
