@@ -40,7 +40,22 @@
         {{v.0}}
             {{v.1}}
 {{v.2}}
+            <br>
+        {% endfor %}
+    {% endfor %}
 
+</table>
+
+        <p>TEST </p>
+   <table>
+
+    {% for entry in reg %}
+    <td valign="top">
+        {% for v in entry.1 %}
+        ||
+        {{v.3}}
+            {{v.1}}
+{{v.2}}
             <br>
         {% endfor %}
     {% endfor %}

@@ -87,18 +87,18 @@ def index(request):
     num = int(len(rows) / 9)
     i = 0
     s_i = 0
-    req = "SELECT filial.kod, name, down, disk FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
+    req = "SELECT filial.kod, name, down, disk, ip FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
     rows = sql_select(req)
     print(rows)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
         print(row[2])
         reg = registrator(row[2])
-        disk = disk(row[2])
+        d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = f" {name[:15]}"
-        temp = [name, reg, disk]
+        temp = [name, reg, d, row[4]]
         if i == num:
             i = 0
             s_i += 1
