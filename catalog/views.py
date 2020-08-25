@@ -93,11 +93,14 @@ def index(request):
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
         print(row[2])
-        reg = registrator(row[2])
-        d = disk(row[3])
+        if row[2] == 1:
+            reg, d = "🟥", "🟥"
+        else:
+            reg = registrator(row[2])
+            d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:14]}"
+        name = f" {name[:10]}"
         temp = [name, reg, d, row[4]]
         if i == num:
             i = 0
