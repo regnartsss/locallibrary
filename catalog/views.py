@@ -84,20 +84,21 @@ def index(request):
 
 
     r ={}
-    num = int(len(rows) / 11)
+    num = int(len(rows) / 9)
     i = 0
     s_i = 0
-    req = "SELECT filial.kod, name, down FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
+    req = "SELECT filial.kod, name, down, disk FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
     rows = sql_select(req)
     print(rows)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
         print(row[2])
-        reg = f"\n {registrator(row[2])}"
+        reg = registrator(row[2])
+        disk = disk(row[2])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = f" {name[:15]}"
-        temp = [name, reg]
+        temp = [name, reg, disk]
         if i == num:
             i = 0
             s_i += 1
@@ -116,6 +117,15 @@ def index(request):
         context={'kod': kod, 'reg':reg, "time":data_monitor()},
     )
 
+def disk(row):
+    st = ""
+    if row == "OK":
+        st += "🟥"
+    elif row == "ERROR":
+        st += "🟩"
+    else:
+        st += "🟪"
+    return st
 
 def registrator(row):
     st = ""
