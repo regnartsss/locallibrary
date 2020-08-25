@@ -90,19 +90,16 @@ def index(request):
     rows = sql_select(req)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
-        if row[5] == row[6]:
-            cam = "🟩"
-        else:
-            cam = "🟨"
         if row[2] == 1:
-            reg, d, cam = "🟥", "🟥",  "🟥"
+            reg, d, c = "🟥", "🟥",  "🟥"
         else:
             reg = registrator(row[2])
             d = disk(row[3])
+            c = cam(row[5], row[6])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:17]}"
-        temp = [name, reg, d, row[4], cam]
+        name = f" {name[:16]}"
+        temp = [name, reg, d, row[4], c]
         if i == num:
             i = 0
             s_i += 1
@@ -120,6 +117,15 @@ def index(request):
         'index.html',
         context={'kod': kod, 'reg':reg, "time":data_monitor()},
     )
+
+
+def cam(all, up):
+    if all == up:
+        c = "🟩"
+    else:
+        c = "🟨"
+    return c
+
 
 def disk(row):
     st = ""
