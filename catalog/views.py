@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
 
     cursor = conn.cursor()
     cursor.execute(request)
@@ -32,13 +32,12 @@ def index(request):
     # print(req)
     rows = sql_select(req)
     for row in rows:
-        rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
-        reg = f"\n {registrator(rows)}"
-        # print(reg)
+        # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
+        # reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
         name = f" {name[:20]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
-        temp = [sd, st1, st2, name, reg]
+        temp = [sd, st1, st2, name]
         if row[1] == 0:
             try:
                 s[0].append(temp)
@@ -82,22 +81,50 @@ def index(request):
                 s[7] = []
                 s[7].append(temp)
     kod = sorted(s.items(), key=lambda k: k)
+
+
+    r ={}
+    num = int(len(rows) / 11)
+    i = 0
+    s_i = 0
+    req = "SELECT filial.kod, name, down FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
+    rows = sql_select(req)
+    print(rows)
+    # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
+    for row in rows:
+        print(row[2])
+        reg = f"\n {registrator(row[2])}"
+        # name = f"{row[0]} {row[1]}"
+        name = row[1]
+        name = f" {name[:10]}"
+        temp = [name, reg]
+        if i == num:
+            i = 0
+            s_i += 1
+        else:
+            try:
+                r[s_i].append(temp)
+            except KeyError:
+                r[s_i] = []
+                r[s_i].append(temp)
+            i += 1
+
+    reg = sorted(r.items(), key=lambda k: k)
     return render(
         request,
         'index.html',
-        context={'kod': kod, "time":data_monitor()},
+        context={'kod': kod, 'reg':reg, "time":data_monitor()},
     )
 
 
-def registrator(rows):
+def registrator(row):
     st = ""
-    for row in rows:
-        if row[0] == 1:
-            st += "🟥"
-        elif row[0] == 0:
-            st += "🟩"
-        else:
-            st += "🟪"
+    if row == 1:
+        st += "🟥"
+    elif row == 0:
+        st += "🟩"
+    else:
+        st += "🟪"
     return st
 
 
