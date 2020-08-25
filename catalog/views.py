@@ -34,6 +34,7 @@ def index(request):
         # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
         # reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
+        name = ser_name(name)
         name = f" {name[:25]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name]
@@ -128,6 +129,20 @@ def index(request):
         context={'kod': kod, 'reg':reg, "time":data_monitor()},
     )
 
+
+def ser_name(name):
+    name = name.split()
+    n1 = name[0]
+    n2 = ' '.join(name[1:])
+    n = 4 - len(n1)
+    if n == 1:
+        n1 = f"{n1} "
+    elif n == 2:
+        n1 = f"{n1}  "
+    elif n == 3:
+        n1 = f"{n1}   "
+    name = f"{n1} {n2}"
+    return name
 
 def cam(all, up):
     if all == up:
