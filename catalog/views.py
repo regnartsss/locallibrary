@@ -111,6 +111,7 @@ def index(request):
         temp = [name, reg, d, row[4], c]
         if i == num:
             i = 0
+            r[s_i].append(temp)
             s_i += 1
         else:
             try:
