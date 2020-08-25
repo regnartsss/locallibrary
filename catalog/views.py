@@ -98,7 +98,13 @@ def index(request):
             c = cam(row[5], row[6])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:16]}"
+        name = name.split()
+        n1 = name[0]
+        n2 = ' '.join(name[1:])
+        if len(n1) > 5:
+            n1 = n1[:5]
+        name = f"{n1} {n2}"
+        name = name[:15]
         temp = [name, reg, d, row[4], c]
         if i == num:
             i = 0
