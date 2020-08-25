@@ -9,9 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
-
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
     cursor = conn.cursor()
     cursor.execute(request)
     rows = cursor.fetchall()
@@ -35,7 +34,7 @@ def index(request):
         # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
         # reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
-        name = f" {name[:20]}"
+        name = f" {name[:25]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name]
         if row[1] == 0:
@@ -99,7 +98,7 @@ def index(request):
             d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:14]}"
+        name = f" {name[:18]}"
         temp = [name, reg, d, row[4]]
         if i == num:
             i = 0

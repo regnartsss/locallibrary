@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 {% block content %}
-<style>
-p {
- font-size: 11pt;
-}
-</style>
+<small>
+    <p>Последнее обновление {{time}} <i>🟢 - Провайдер работает, 🔴 - Провайдер не работает, ⚪ - Провайдер не настроен или  его нет, "⚫" - SDWAN</i> </p>
+<!--<font size="3" >-->
 <table>
     {% for entry in kod %}
     <td valign="top">
@@ -29,6 +27,9 @@ p {
     {% endfor %}
 </table>
 
+<!--</font>-->
+ <p><i>Регистраторы</i> | 1. Доступность | 2. Состояние дисков </p>
+
 <table>
     {% for entry in reg %}
     <td valign="top">
@@ -42,6 +43,7 @@ p {
     {% endfor %}
 
 </table>
+    </small>
         <p>TEST </p>
    <table>
     {% for entry in reg %}
