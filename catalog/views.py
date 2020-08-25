@@ -84,7 +84,7 @@ def index(request):
 
 
     r ={}
-    num = int(len(rows) / 9)
+    num = int(len(rows)/8)
     i = 0
     s_i = 0
     req = "SELECT filial.kod, name, down, disk, ip FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
@@ -97,7 +97,7 @@ def index(request):
         d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:15]}"
+        name = f" {name[:14]}"
         temp = [name, reg, d, row[4]]
         if i == num:
             i = 0
@@ -120,9 +120,9 @@ def index(request):
 def disk(row):
     st = ""
     if row == "OK":
-        st += "🟥"
-    elif row == "ERROR":
         st += "🟩"
+    elif row == "ERROR":
+        st += "🟥"
     else:
         st += "🟪"
     return st
