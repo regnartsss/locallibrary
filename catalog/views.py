@@ -84,7 +84,7 @@ def index(request):
 
 
     r ={}
-    num = int(len(rows)/8)
+    num = int(len(rows)/7)
     i = 0
     s_i = 0
     req = "SELECT filial.kod, name, down, disk, ip FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
