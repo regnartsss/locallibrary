@@ -127,7 +127,7 @@ def disk(row):
     elif row == "ERROR":
         st += "🟥"
     else:
-        st += "🟪"
+        st += "⬜️"
     return st
 
 def registrator(row):
@@ -137,7 +137,7 @@ def registrator(row):
     elif row == 0:
         st += "🟩"
     else:
-        st += "🟪"
+        st += "⬜️"
     return st
 
 
