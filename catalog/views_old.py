@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
 
     cursor = conn.cursor()
     cursor.execute(request)
@@ -31,6 +31,9 @@ def index(request):
           "ON filial.kod = status.kod ORDER BY name"
     # print(req)
     rows = sql_select(req)
+    num = int(len(rows)/7)
+    i = 0
+    s_i = 0
     for row in rows:
         rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
         reg = f"\n {registrator(rows)}"
@@ -39,48 +42,61 @@ def index(request):
         name = f" {name[:20]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name, reg]
-        if row[1] == 0:
+        if i == num:
+            i = 0
+            s_i += 1
+        else:
             try:
-                s[0].append(temp)
+                s[s_i].append(temp)
             except KeyError:
-                s[0] = []
-                s[0].append(temp)
-        elif row[1] == 1:
-            try:
-                s[1].append(temp)
-            except KeyError:
-                s[1] = []
-                s[1].append(temp)
-        elif row[1] == 2:
-            try:
-                s[2].append(temp)
-            except KeyError:
-                s[2] = []
-                s[2].append(temp)
-        elif row[1] == 3:
-            try:
-                s[3].append(temp)
-            except KeyError:
-                s[3] = []
-                s[3].append(temp)
-        elif row[1] == 4:
-            try:
-                s[4].append(temp)
-            except KeyError:
-                s[4] = []
-                s[4].append(temp)
-        elif row[1] == 5 or row[1] == 6:
-            try:
-                s[5].append(temp)
-            except KeyError:
-                s[5] = []
-                s[5].append(temp)
-        elif row[1] == 7 or row[1] == 8 or row[1] == 9:
-            try:
-                s[7].append(temp)
-            except KeyError:
-                s[7] = []
-                s[7].append(temp)
+                s[s_i] = []
+                s[s_i].append(temp)
+            i += 1
+    # if row[1] == 0:
+        #     try:
+        #         s[0].append(temp)
+        #     except Exception as n:
+        #         print(n)
+        #         s[0] = []
+        #         s[0].append(temp)
+        # elif row[1] == 1:
+        #     try:
+        #         s[1].append(temp)
+        #     except Exception as n:
+        #         print(n)
+        #         s[1] = []
+        #         s[1].append(temp)
+        # elif row[1] == 2:
+        #     try:
+        #         s[2].append(temp)
+        #     except Exception as n:
+        #         print(n)
+        #         s[2] = []
+        #         s[2].append(temp)
+        # elif row[1] == 3:
+        #     try:
+        #         s[3].append(temp)
+        #     except:
+        #         s[3] = []
+        #         s[3].append(temp)
+        # elif row[1] == 4:
+        #     try:
+        #         s[4].append(temp)
+        #     except:
+        #         s[4] = []
+        #         s[4].append(temp)
+        # elif row[1] == 5 or row[1] == 6:
+        #     try:
+        #         s[5].append(temp)
+        #     except:
+        #         s[5] = []
+        #         s[5].append(temp)
+        # elif row[1] == 7 or row[1] == 8 or row[1] == 9:
+        #     try:
+        #         s[7].append(temp)
+        #     except:
+        #         s[7] = []
+        #         s[7].append(temp)
     kod = sorted(s.items(), key=lambda k: k)
     return render(
         request,

@@ -19,47 +19,32 @@
 
     {% for entry in kod %}
     <td valign="top">
-<!--        {{entry}}-->
-<!--        <td>{{entry.1}}</td>-->
-<!--        <tr>-->
         {% for v in entry.1 %}
-<!--&lt;!&ndash;        <big><big>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td>{{v}}</td>&ndash;&gt;-->
         ||
             {{v.0}}
             {{v.1}}
             {{v.2}}
             {{v.3}}
             <br>
-            {{v.4}}
-            <br>
-<!--        </tr>-->
-
-<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
-<!--        </big></big>-->
         {% endfor %}
-
     {% endfor %}
-</table>
-<!--<table>-->
-<!--    {% for entry in kod.items %}-->
-<!--    <tr>-->
-<!--&lt;!&ndash;        <td>{{entry.1}}</td>&ndash;&gt;-->
-<!--        {% for v in entry.1 %}-->
-<!--        <big><big>-->
-<!--        <td>{{v.0}}</td>-->
-<!--        <td>{{v.1}}</td>-->
-<!--        <td>{{v.2}}</td>-->
-<!--        <td>{{v.3}}</td>-->
-<!--        <td> |</td>-->
-<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td> |</td>&ndash;&gt;-->
-<!--        </big></big>-->
-<!--        {% endfor %}-->
-<!--    </tr>-->
-<!--    {% endfor %}-->
-<!--</table>-->
 
+</table>
+    <p>Регистраторы </p>
+<table>
+
+    {% for entry in kod %}
+    <td valign="top">
+        {% for v in entry.1 %}
+        ||
+        {{v.3}}
+            {{v.4}}
+
+
+            <br>
+        {% endfor %}
+    {% endfor %}
+
+</table>
 {% endblock %}
 <!--</html>-->
