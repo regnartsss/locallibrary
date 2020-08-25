@@ -89,10 +89,9 @@ def index(request):
     s_i = 0
     req = "SELECT filial.kod, name, down, disk, ip FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
     rows = sql_select(req)
-    print(rows)
+
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
-        print(row[2])
         if row[2] == 1:
             reg, d = "🟥", "🟥"
         else:
