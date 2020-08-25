@@ -100,7 +100,7 @@ def index(request):
             d = disk(row[3])
         # name = f"{row[0]} {row[1]}"
         name = row[1]
-        name = f" {name[:13]}"
+        name = f" {name[:14]}"
         temp = [name, reg, d, row[4]]
         if i == num:
             i = 0
