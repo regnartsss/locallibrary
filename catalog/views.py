@@ -87,17 +87,18 @@ def index(request):
     num = int(len(rows)/7)
     i = 0
     s_i = 0
-    req = "SELECT filial.kod, name, down, disk, ip, cam, cam_down FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
+    req = "SELECT filial.kod, name, down, disk, ip, cam, cam_down, script FROM filial LEFT JOIN registrator ON filial.kod = registrator.kod ORDER BY name"
     rows = sql_select(req)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
         if row[2] == 1:
-            reg, d, c = "🟥", "🟥",  "🟥"
+            reg, d, c = "🟥", "🟥",  "🟥", "🟥"
         else:
             reg = registrator(row[2])
             d = disk(row[3])
 
             c = cam(row[5], row[6])
+            s = disk(row[7])
             if reg == "⬜️":
                 c = "⬜️"
         # name = f"{row[0]} {row[1]}"
@@ -109,7 +110,7 @@ def index(request):
             n1 = n1[:5]
         name = f"{n1} {n2}"
         name = name[:15]
-        temp = [name, reg, d, row[4], c]
+        temp = [name, reg, d, row[4], c, s]
         if i == num:
             i = 0
             r[s_i].append(temp)
@@ -143,6 +144,15 @@ def ser_name(name):
         n1 = f"{n1}   "
     name = f"{n1} {n2}"
     return name
+
+
+# def scr(s):
+#     if s == 1:
+#         c = "🟩"
+#     else:
+#         c = "🟨"
+#     return c
+
 
 def cam(all, up):
     if all == up:
