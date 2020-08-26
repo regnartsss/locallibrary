@@ -172,7 +172,7 @@ def disk(row):
     if row == "OK":
         st += "🟩"
     elif row == "ERROR":
-        st += "🟥"
+        st += "🟪"
     else:
         st += "⬜️"
     return st
