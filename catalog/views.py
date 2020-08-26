@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
     cursor = conn.cursor()
     cursor.execute(request)
     rows = cursor.fetchall()
@@ -34,10 +34,12 @@ def index(request):
         # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
         # reg = f"\n {registrator(rows)}"
         name = f"{row[0]} {row[2]}"
-        name = ser_name(name)
-        name = f" {name[:25]}"
+        name = ser_name(name)[:25]
+        print(name)
+        # name = f" {name[:25]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name]
+        print(temp)
         if row[1] == 0:
             try:
                 s[0].append(temp)
@@ -92,7 +94,7 @@ def index(request):
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
         if row[2] == 1:
-            reg, d, c = "🟥", "🟥",  "🟥", "🟥"
+            reg, d, c, s = "🟥", "🟥",  "🟥", "🟥"
         else:
             reg = registrator(row[2])
             d = disk(row[3])
@@ -134,15 +136,18 @@ def index(request):
 def ser_name(name):
     name = name.split()
     n1 = name[0]
-    n2 = ' '.join(name[1:])
+    n2 = (' '.join(name[1:]))[0:]
     n = 4 - len(n1)
     if n == 1:
-        n1 = f"{n1} "
+        n1 = f"{n1}⠀"
     elif n == 2:
-        n1 = f"{n1}  "
+        n1 = f"{n1}⠀⠀"
     elif n == 3:
-        n1 = f"{n1}   "
-    name = f"{n1} {n2}"
+        n1 = f"{n1}⠀⠀⠀"
+    else:
+        n1 = f"{n1} "
+    name = f"{n1}{n2}"
+    print(name)
     return name
 
 
