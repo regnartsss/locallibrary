@@ -25,7 +25,7 @@ SECRET_KEY = '*0cw2itkivzmy6u92zkii6evh^_+uw3=@r-g_ra(yt)qmv8k@)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '10.0.111.158', 'heroeslife.online']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '10.0.111.158', 'heroeslife.online', '46.166.66.245', '10.0.111.111']
 
 
 # Application definition
