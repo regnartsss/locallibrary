@@ -9,8 +9,8 @@ import sqlite3
 
 
 def sql_select(request):
-    conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
-    # conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
+    # conn = sqlite3.connect(r'C:\GitHub\snmpvs\work\sdwan.db')
+    conn = sqlite3.connect(r'C:\Users\podkopaev.k\PycharmProjects\snmpvs\work\sdwan.db')
     cursor = conn.cursor()
     cursor.execute(request)
     rows = cursor.fetchall()
@@ -39,7 +39,10 @@ def index(request):
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
         temp = [sd, st1, st2, name]
         try:
-            s[row[1]].append(temp)
+            if len(s[row[1]]) > 20:
+                s[row[1]+1].append(temp)
+            else:
+                s[row[1]].append(temp)
         except KeyError:
             s[row[1]] = []
             s[row[1]].append(temp)
