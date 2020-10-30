@@ -39,13 +39,20 @@ def index(request):
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
         temp = [sd, st1, st2, name]
         try:
-            if len(s[row[1]]) > 20:
-                s[row[1]+1].append(temp)
+            # s[row[1]].append(temp)
+
+            if len(s[row[1]]) > 25:
+                try:
+                    s[row[1]+0.5].append(temp)
+                except KeyError:
+                    s[row[1]+0.5] = []
+                    s[row[1]+0.5].append(temp)
             else:
                 s[row[1]].append(temp)
         except KeyError:
             s[row[1]] = []
             s[row[1]].append(temp)
+
         # if row[1] == 173:
         #     try:
         #         s[0].append(temp)
