@@ -31,11 +31,9 @@ def index(request):
     # print(req)
     rows = sql_select(req)
     for row in rows:
-        # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
-        # reg = f"\n {registrator(rows)}"
-        name = f"{row[0]} {row[2]}"
-        name = ser_name(name)[:24]
-        # name = f" {name[:25]}"
+        # name = f"{row[0]} {row[2]}"
+        # name = ser_name(name)[:24]
+        name = row[2][:25]
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
         temp = [sd, st1, st2, name]
         try:
