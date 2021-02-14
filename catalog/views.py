@@ -3,13 +3,22 @@ from datetime import datetime
 global stat, dat
 import pymysql
 
-HOST = '10.0.111.158'
+# HOST = '10.0.111.158'
+# PORT = 3306
+# USER = 'bdused'
+# PASSWORD = 'Q!W@E#R$'
+# DB = 'bd_vs_monitoring'
+# charset = 'utf8mb4'
+# HOST = '10.0.111.158'
+HOST = '10.97.173.16'
+
 PORT = 3306
-USER = 'bdused'
-PASSWORD = 'Q!W@E#R$'
+# USER = 'bdused'
+USER = 'bduser'
+# PASSWORD = 'Q!W@E#R$'
+PASSWORD = 'q1W@e3R$'
 DB = 'bd_vs_monitoring'
 charset = 'utf8mb4'
-
 
 
 # def bd_fetchall(request):
