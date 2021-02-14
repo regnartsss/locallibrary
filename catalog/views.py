@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime
 global stat, dat
-import MySQLdb
+import pymysql
 
 HOST = '10.0.111.158'
 PORT = 3306
@@ -12,12 +12,21 @@ charset = 'utf8mb4'
 
 
 
+# def bd_fetchall(request):
+#     conn = MySQLdb.connect(host=HOST, port=PORT, user=USER, passwd=PASSWORD, db=DB, charset=charset)
+#     cursor = conn.cursor()
+#     cursor.execute(request)
+#     rows = cursor.fetchall()
+#     return rows
+
+
 def bd_fetchall(request):
-    conn = MySQLdb.connect(host=HOST, port=PORT, user=USER, passwd=PASSWORD, db=DB, charset=charset)
-    cursor = conn.cursor()
-    cursor.execute(request)
-    rows = cursor.fetchall()
-    return rows
+    conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
+    with conn.cursor() as cursor:
+        # cursor = await conn.cursor()
+        cursor.execute(request)
+        return cursor.fetchall()
+
 
 def data_monitor():
     return datetime.today().strftime("%H:%M:%S %d/%m/%Y")
