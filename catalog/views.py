@@ -10,7 +10,7 @@ import pymysql
 # DB = 'bd_vs_monitoring'
 # charset = 'utf8mb4'
 # HOST = '10.0.111.158'
-HOST = '10.97.173.16'
+HOST = 'vs-server.partner.ru'
 
 PORT = 3306
 # USER = 'bdused'
