@@ -10,8 +10,8 @@ import pymysql
 # DB = 'bd_vs_monitoring'
 # charset = 'utf8mb4'
 # HOST = '10.0.111.158'
-HOST = 'vs-server.partner.ru'
-
+HOST = '10.97.172.10'
+#
 PORT = 3306
 # USER = 'bdused'
 USER = 'bduser'
@@ -72,7 +72,7 @@ def index(request):
 
     kod = sorted(s.items(), key=lambda k: k)
     r ={}
-    num = int(len(rows)/6)
+    num = int(len(rows)/6.5)
     i = 0
     s_i = 0
     req = """SELECT bd_devices.kod, name, down, disk, ip, cam, cam_down, script, bd_devices.loopback FROM bd_devices 
