@@ -10,7 +10,7 @@ import pymysql
 # DB = 'bd_vs_monitoring'
 # charset = 'utf8mb4'
 # HOST = '10.0.111.158'
-HOST = '10.97.172.10'
+HOST = 'vs-server'
 #
 PORT = 3306
 # USER = 'bdused'
@@ -46,16 +46,15 @@ def index(request):
     tab = 0
     s = {}
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
-    req = "SELECT bd_devices.kod, region_mon, name, status_1, status_2, ISP1, ISP2,  sdwan, Oper1, Oper2, status_operisp2  FROM bd_devices LEFT JOIN bd_status " \
-          "ON bd_devices.kod = bd_status.kod WHERE bd_status.kod is not null ORDER BY name"
-    # print(req)
+    req = "SELECT db_devices.kod, region_mon, name, sdwan, status_Tu0, status_Tu1, `link_Gi0/0/0`, `link_Gi0/0/1`, `link_Tu0`, `link_Tu1`, `link_Tu20`  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"
     rows = bd_fetchall(req)
     for row in rows:
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:24]
-        # name = row[2][:25]
-        st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
+        name = row[2][:25]
+        st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], row[10])
         temp = [sd, st1, st2, name]
+        # temp = [name]
         try:
             # s[row[1]].append(temp)
             if len(s[row[1]]) > 26:
@@ -75,8 +74,8 @@ def index(request):
     num = int(len(rows)/6.5)
     i = 0
     s_i = 0
-    req = """SELECT bd_devices.kod, name, down, disk, ip, cam, cam_down, script, bd_devices.loopback FROM bd_devices 
-    LEFT JOIN bd_registrator ON bd_devices.kod = bd_registrator.kod WHERE bd_registrator.ip is not null ORDER BY name"""
+    req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
+    LEFT JOIN db_registrator ON db_devices.kod = db_registrator.kod WHERE db_registrator.ip is not null ORDER BY name"""
     rows = bd_fetchall(req)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
@@ -178,7 +177,7 @@ def registrator(row):
     return st
 
 
-def status(s1, s2, ISP1, ISP2, sdwan, op1, op2, st_op2):
+def status(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20):
     ch1, ch2, sd = '🟡','🟡', "⚪"
     if s1 == 1:
         ch1 = "🟢"
@@ -188,12 +187,18 @@ def status(s1, s2, ISP1, ISP2, sdwan, op1, op2, st_op2):
         ch2 = "🟢"
     elif s2 == 0:
         ch2 = "🔴"
-    if op1 == 2:
+    if linkgi0 == 2:
         ch1 = "🔵"
-    if op2 == 2:
+    if linkgi1 == 2:
         ch2 = "🔵"
-    if op2 == 1 and st_op2 == 2:
+    if linktu1 == 1 and linkgi1 == 2:
         ch2 = "✔️"
+    if linktu20 == 1 and linkgi1 == 2:
+        ch2 = "🟤"
+    if linktu20 == 1 and s2 == 0 and linkgi1 == 2:
+        ch2 = "🟠"
+    if linkgi1 == 2 and linktu20 == 1 and s1 == 0:
+        ch2 = "🟣"
     # if ISP1 == "unassigned":
     #     ch1 = "⚪"
     #     # chop1 = "⚪"
