@@ -52,6 +52,7 @@ def index(request):
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:24]
         name = row[2][:25]
+        # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], row[10])
         temp = [sd, st1, st2, name]
         # temp = [name]
@@ -178,6 +179,7 @@ def registrator(row):
 
 
 def status(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20):
+    # print(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20)
     ch1, ch2, sd = '🟡','🟡', "⚪"
     if s1 == 1:
         ch1 = "🟢"
@@ -199,6 +201,12 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20):
         ch2 = "🟠"
     if linkgi1 == 2 and linktu20 == 1 and s1 == 0:
         ch2 = "🟣"
+    if s1 == 0 and s2 == 0:
+        ch1 = "🔴"
+        ch2 = "🔴"
+
+
+
     # if ISP1 == "unassigned":
     #     ch1 = "⚪"
     #     # chop1 = "⚪"
