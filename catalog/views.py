@@ -204,7 +204,9 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20):
     if s1 == 0 and s2 == 0:
         ch1 = "🔴"
         ch2 = "🔴"
-
+    if s1 == 1 and s2 == 1 and linktu20 == 1:
+        ch1 = "🟢"
+        ch2 = "🟢"
 
 
     # if ISP1 == "unassigned":
