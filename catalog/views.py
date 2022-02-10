@@ -10,14 +10,14 @@ import pymysql
 # DB = 'bd_vs_monitoring'
 # charset = 'utf8mb4'
 # HOST = '10.0.111.158'
-HOST = 'vs-server'
+HOST = '10.0.75.11'
 #
 PORT = 3306
 # USER = 'bdused'
-USER = 'bduser'
+USER = 'dbuser'
 # PASSWORD = 'Q!W@E#R$'
 PASSWORD = 'q1W@e3R$'
-DB = 'bd_vs_monitoring'
+DB = 'db_vs_bot'
 charset = 'utf8mb4'
 
 
