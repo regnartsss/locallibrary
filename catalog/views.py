@@ -30,7 +30,7 @@ charset = 'utf8mb4'
 
 
 def bd_fetchall(request):
-    conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset, auth_plugin='mysql_native_password')
+    conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
     with conn.cursor() as cursor:
         # cursor = await conn.cursor()
         cursor.execute(request)
