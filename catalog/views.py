@@ -1,22 +1,12 @@
 from django.shortcuts import render
 from datetime import datetime
 global stat, dat
-import mysql.connector
+import pymysql
 
 
-# HOST = '10.0.111.158'
-# PORT = 3306
-# USER = 'bdused'
-# PASSWORD = 'Q!W@E#R$'
-# DB = 'bd_vs_monitoring'
-# charset = 'utf8mb4'
-# HOST = '10.0.111.158'
 HOST = '10.0.75.11'
-#
 PORT = 3306
-# USER = 'bdused'
-USER = 'dbuser'
-# PASSWORD = 'Q!W@E#R$'
+USER = 'dbuserlocal'
 PASSWORD = 'q1W@e3R$'
 DB = 'db_vs_bot'
 charset = 'utf8mb4'
@@ -31,7 +21,7 @@ charset = 'utf8mb4'
 
 
 def bd_fetchall(request):
-    conn = mysql.connector.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
+    conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
     with conn.cursor() as cursor:
         cursor.execute(request)
         return cursor.fetchall()
