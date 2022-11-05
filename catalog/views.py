@@ -66,7 +66,7 @@ def index(request):
     i = 0
     s_i = 0
     req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
-    LEFT JOIN db_registrator ON db_devices.kod = db_registrator.kod WHERE db_registrator.ip is not null ORDER BY name, hostname"""
+    LEFT JOIN db_registrator ON db_devices.kod = db_registrator.kod WHERE db_registrator.ip is not null ORDER BY name, db_registrator.hostname"""
     rows = bd_fetchall(req)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
