@@ -46,7 +46,7 @@ def index(request):
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9])
         temp = [sd, st1, st2, name]
-        # temp = [name]
+        temp_reg = [' ', ' ', ' ', row[10]]
         try:
             # s[row[1]].append(temp)
             if len(s[row[1]]) > 26:
@@ -59,7 +59,7 @@ def index(request):
                 s[row[1]].append(temp)
         except KeyError:
             s[row[1]] = []
-            s[row[1]].append(' ', row[10])
+            s[row[1]].append(temp_reg)
             s[row[1]].append(temp)
 
     kod = sorted(s.items(), key=lambda k: k)
