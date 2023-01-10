@@ -59,7 +59,7 @@ def index(request):
                 s[row[1]].append(temp)
         except KeyError:
             s[row[1]] = []
-            s[row[1]].append(row[10])
+            s[row[1]].append(' ', row[10])
             s[row[1]].append(temp)
 
     kod = sorted(s.items(), key=lambda k: k)
