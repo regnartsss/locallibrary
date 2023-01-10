@@ -38,6 +38,7 @@ def index(request):
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
     req = "SELECT db_devices.kod, region_mon, name, sdwan, status_Tu0, status_Tu1, `link_Gi0/0/0`, `link_Gi0/0/1`, `link_Tu1`, `lte`  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"
     rows = bd_fetchall(req)
+
     for row in rows:
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:24]
@@ -57,7 +58,7 @@ def index(request):
             else:
                 s[row[1]].append(temp)
         except KeyError:
-            s[row[1]] = []
+            s[row[1]] = [" ", " ", " ", row[1]]
             s[row[1]].append(temp)
 
     kod = sorted(s.items(), key=lambda k: k)
