@@ -25,7 +25,7 @@ SECRET_KEY = '*0cw2itkivzmy6u92zkii6evh^_+uw3=@r-g_ra(yt)qmv8k@)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vs-server', 'vs-server.partner.ru', '10.97.172.10', '10.0.75.11', '10.97.172.172']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '10.96.8.8']
 
 
 # Application definition
