@@ -4,7 +4,7 @@ global stat, dat
 import pymysql
 
 
-HOST = '10.0.75.11'
+HOST = 'localhost'
 PORT = 3306
 USER = 'dbuserlocal'
 PASSWORD = 'q1W@e3R$'
