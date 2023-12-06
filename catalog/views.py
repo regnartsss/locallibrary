@@ -42,7 +42,7 @@ def index(request):
     for row in rows:
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:24]
-        name = row[2][:23]
+        name = row[2][:20]
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9])
         temp = [sd, st1, st2, name]
