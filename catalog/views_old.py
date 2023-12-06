@@ -39,7 +39,7 @@ def index(request):
         reg = f"\n {registrator(rows)}"
         # print(reg)
         name = f"{row[0]} {row[2]}"
-        name = f" {name[:19]}"
+        name = f" {name[:18]}"
         st1, st2, sd = status(row[3], row[4], row[5], row[6], row[7])
         temp = [sd, st1, st2, name, reg]
         if i == num:
