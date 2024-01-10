@@ -186,7 +186,7 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte):
     if linkgi1 == 2:
         ch2 = "🔵"
     if linktu1 == 1 and linkgi1 == 2:
-        ch2 = linkgi1
+        ch2 = "✔️"
     if linktu1 == 1 and linkgi1 == 2 and lte == 1:
         ch2 = "🟡"
     # if linktu20 == 1 and linkgi1 == 2:
