@@ -36,15 +36,17 @@ def index(request):
     tab = 0
     s = {}
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
-    req = "SELECT db_devices.kod, region_mon, name, sdwan, status_Tu0, status_Tu1, `link_Gi0/0/0`, `link_Gi0/0/1`, `link_Tu1`, `lte`, region_text  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"
+    req = "SELECT db_devices.kod, region_mon, name, sdwan, status_Tu0, status_Tu1, `link_Gi0/0/0`, `link_Gi0/0/1`, `link_Tu1`, `lte`, region_text, `ssh_protocol_0/0/1`, ssh_protocol_tu1  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"
     rows = bd_fetchall(req)
 
     for row in rows:
+        ssh_protocol_001 = row[11]
+        ssh_protocol_tu1 = row[12]
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:24]
         name = row[2][:20]
         # print(name)
-        st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9])
+        st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1)
         temp = [sd, st1, st2, name]
         temp_reg = ['⚪️️', '⚪️', '⚪️', row[10]]
         try:
@@ -170,7 +172,7 @@ def registrator(row):
     return st
 
 
-def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte):
+def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_protocol_tu1):
     # print(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20)
     ch1, ch2, sd = '🟡','🟡', "⚪"
     if s1 == 1:
@@ -185,7 +187,7 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte):
         ch1 = "🔵"
     if linkgi1 == 2:
         ch2 = "🔵"
-    if linktu1 == 1 and linkgi1 == 2:
+    if ssh_protocol_001 == 0 and ssh_protocol_tu1 == 0:
         ch2 = "✔️"
     if linktu1 == 1 and linkgi1 == 2 and lte == 1:
         ch2 = "🟡"
