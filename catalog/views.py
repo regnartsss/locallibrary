@@ -187,16 +187,17 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_
         ch2 = "🟢"
     elif s2 == 0:
         ch2 = "🔴"
-    if linkgi0 == 2:
-        ch1 = "🔵"
-    if linkgi1 == 2 and ssh_protocol_001 == 0 and ssh_protocol_tu1 == 0 and ssh_status_001 == 0:
-        ch2 = "🔵"
-    if ssh_protocol_001 == 0 and ssh_protocol_tu1 == 0 and ssh_status_001 == 1:
-        ch2 = "✔️"
+
     if linkgi0 == 2 and ssh_protocol_000 == 0 and ssh_protocol_tu0 == 0 and ssh_status_000 == 0:
         ch1 = "🔵"
     if ssh_protocol_000 == 0 and ssh_protocol_tu0 == 0 and ssh_status_000 == 1:
         ch1 = "✔️"
+
+    if linkgi1 == 2 and ssh_protocol_001 == 0 and ssh_protocol_tu1 == 0 and ssh_status_001 == 0:
+        ch2 = "🔵"
+    if ssh_protocol_001 == 0 and ssh_protocol_tu1 == 0 and ssh_status_001 == 1:
+        ch2 = "✔️"
+
 
 
     if linktu1 == 2 and linkgi1 == 2 and lte == 1:
