@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from datetime import datetime
 global stat, dat
-import pymysql
+import psycopg2
 
 
-HOST = 'localhost'
-PORT = 3306
-USER = 'dbuserlocal'
-PASSWORD = 'q1W@e3R$'
+HOST = '10.96.8.60'
+USER = 'user_bot'
+PASSWORD = 'z15X3vdy%'
 DB = 'db_vs_bot'
 charset = 'utf8mb4'
 
@@ -21,7 +20,8 @@ charset = 'utf8mb4'
 
 
 def bd_fetchall(request):
-    conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
+    conn = psycopg2.connect(f'postgresql://{USER}:{PASSWORD}@host:port/database_name')
+    # conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
     with conn.cursor() as cursor:
         cursor.execute(request)
         return cursor.fetchall()
