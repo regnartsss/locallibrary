@@ -20,7 +20,7 @@ charset = 'utf8mb4'
 
 
 def bd_fetchall(request):
-    conn = psycopg2.connect(f'postgresql://{USER}:{PASSWORD}@host:port/database_name')
+    conn = psycopg2.connect(f'postgresql://{USER}:{PASSWORD}@{HOST}/{DB}')
     # conn = pymysql.connect(host=HOST, port=PORT, user=USER, password=PASSWORD, db=DB, charset=charset)
     with conn.cursor() as cursor:
         cursor.execute(request)
