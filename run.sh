@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/home/user/git/locallibrary/newenv/bin/python3 /home/user/git/locallibrary/manage.py runserver 0.0.0.0:8000
+/home/useradmin/project/locallibrary/venv/bin/python3 /home/useradmin/project/locallibrary/manage.py runserver 0.0.0.0:8000
