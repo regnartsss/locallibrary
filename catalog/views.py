@@ -4,7 +4,7 @@ global stat, dat
 import psycopg2
 
 
-HOST = '10.96.8.60'
+HOST = 'localhost'
 USER = 'user_bot'
 PASSWORD = 'z15X3vdy%'
 DB = 'db_vs_bot'
