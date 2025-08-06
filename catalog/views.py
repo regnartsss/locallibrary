@@ -48,7 +48,7 @@ def index(request):
         ssh_status_000 = row[16]
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:23]
-        name = row[2][:19]
+        name = row[2][:15]
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000)
         temp = ['⚪️', st1, st2, name]
@@ -95,7 +95,7 @@ def index(request):
         if len(n1) > 5:
             n1 = n1[:4]
         name = f"{n1} {n2}"
-        name = name[:14]
+        name = name[:13]
         temp = [name, reg, d, row[4], c, s]
         if i == num:
             i = 0
