@@ -55,7 +55,7 @@ def index(request):
         temp_reg = ['⚪️️', '⚪️', '⚪️', row[10]]
         try:
             # s[row[1]].append(temp)
-            if len(s[row[1]]) > 25:
+            if len(s[row[1]]) > 26:
                 try:
                     s[row[1]+0.5].append(temp)
                 except KeyError:
