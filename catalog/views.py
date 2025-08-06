@@ -70,7 +70,7 @@ def index(request):
 
     kod = sorted(s.items(), key=lambda k: k)
     r ={}
-    num = int(len(rows)/6.5)
+    num = int(len(rows)/6.4)
     i = 0
     s_i = 0
     req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
@@ -93,7 +93,7 @@ def index(request):
         n1 = name[0]
         n2 = ' '.join(name[1:])
         if len(n1) > 5:
-            n1 = n1[:5]
+            n1 = n1[:4]
         name = f"{n1} {n2}"
         name = name[:12]
         temp = [name, reg, d, row[4], c, s]
