@@ -95,7 +95,7 @@ def index(request):
         if len(n1) > 5:
             n1 = n1[:5]
         name = f"{n1} {n2}"
-        name = name[:15]
+        name = name[:12]
         temp = [name, reg, d, row[4], c, s]
         if i == num:
             i = 0
