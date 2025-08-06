@@ -51,8 +51,8 @@ def index(request):
         name = row[2][:19]
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000)
-        temp = ['   ', st1, st2, name]
-        temp_reg = ['⚪️', '⚪️', row[10]]
+        temp = ['⚪️', st1, st2, name]
+        temp_reg = ['⚪️','⚪️', '⚪️', row[10]]
         try:
             # s[row[1]].append(temp)
             if len(s[row[1]]) > 25:
@@ -95,7 +95,7 @@ def index(request):
         if len(n1) > 5:
             n1 = n1[:4]
         name = f"{n1} {n2}"
-        name = name[:12]
+        name = name[:15]
         temp = [name, reg, d, row[4], c, s]
         if i == num:
             i = 0
