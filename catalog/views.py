@@ -52,10 +52,10 @@ def index(request):
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000)
         temp = [st1, st2, name]
-        temp_reg = ['⚪️️', '⚪️', '⚪️', row[10]]
+        temp_reg = ['⚪️', '⚪️', row[10]]
         try:
             # s[row[1]].append(temp)
-            if len(s[row[1]]) > 26:
+            if len(s[row[1]]) > 25:
                 try:
                     s[row[1]+0.5].append(temp)
                 except KeyError:
@@ -70,7 +70,7 @@ def index(request):
 
     kod = sorted(s.items(), key=lambda k: k)
     r ={}
-    num = int(len(rows)/6)
+    num = int(len(rows)/5)
     i = 0
     s_i = 0
     req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
