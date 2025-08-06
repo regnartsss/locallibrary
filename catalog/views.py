@@ -70,7 +70,7 @@ def index(request):
 
     kod = sorted(s.items(), key=lambda k: k)
     r ={}
-    num = int(len(rows)/5.9)
+    num = int(len(rows)/6)
     i = 0
     s_i = 0
     req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
