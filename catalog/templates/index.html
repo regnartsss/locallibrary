@@ -11,35 +11,37 @@
 {% block content %}
 <small>
     <!--    <p>Последнее обновление {{time}} <i>🟢 - Провайдер работает, 🔴 - Провайдер не работает, ⚪ - Провайдер не настроен или  его нет, "⚫" - SDWAN</i> </p>-->
-    <font size="2" >
-    <table>
-        {% for entry in kod %}
-        <td valign="top">
-            {% for v in entry.1 %}
-            ||
-            {{v.0}}
-            {{v.1}}
-            {{v.2}}
-            {{v.3}}
+    <font size="2">
+        <table>
+            {% for entry in kod %}
+            <td valign="top">
+                {% for v in entry.1 %}
+                ||
+                {{v.0}}
+                {{v.1}}
+                {{v.2}}
+                {{v.3}}
 
-            <br>
+                <br>
+                {% endfor %}
+            </td>
             {% endfor %}
-        </td>
-        {% endfor %}
-    </table>
+        </table>
 
     </font>
     <!-- <p><i>Регистраторы</i> | 🟥 - Не доступен |  Состояние дисков / Состояние камер / Скрипт</p>-->
     <font size="2">
         <table>
             {% for entry in reg %}
+            <td valign="top">
                 {% for v in entry.1 %}
                 ||
                 {{v.2}}
                 {{v.0}}
                 <br>
                 {% endfor %}
-                {% endfor %}
+            </td>
+            {% endfor %}
         </table>
     </font>
 </small>
