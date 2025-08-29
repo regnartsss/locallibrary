@@ -222,7 +222,7 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_
     # if ISP2 == "unassigned":
     #     ch2 = "⚪"
         # chop2 = "⚪"
-    if sdwan == 1:
+    if sdwan == 0:
         # sd = "❌"
         sd = "⚫"
     return ch1, ch2, sd
