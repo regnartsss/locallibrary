@@ -52,7 +52,7 @@ def index(request):
         # print(name)
         st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000)
         sd_avat = '⚪️'
-        if sd == 0:
+        if sd == '0' or sd ==0:
             sd_avat = '⚫️'
         temp = [sd_avat, st1, st2, name]
         temp_reg = ['⚪️','⚪️', '⚪️', row[10]]
