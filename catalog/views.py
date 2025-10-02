@@ -90,7 +90,7 @@ def index(request):
             if reg == "⬜️":
                 c = "⬜️"
             if close:
-                reg = '⬛️'
+                d = '⬛️'
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = name.split()
