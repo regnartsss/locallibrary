@@ -91,6 +91,9 @@ def index(request):
                 c = "⬜️"
             if close:
                 d = '⬛️'
+                reg = '⬛️'
+                c = '⬛️'
+                s = '⬛️'
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = name.split()
