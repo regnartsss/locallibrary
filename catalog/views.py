@@ -36,7 +36,7 @@ def index(request):
     tab = 0
     s = {}
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
-    req = """SELECT db_devices.kod, region_mon, name, sdwan, status_tu0, status_tu1, "link_Gi0/0/0", "link_Gi0/0/1", "link_tu1", "lte", region_text, "ssh_protocol_0/0/1", ssh_protocol_tu1, "ssh_status_0/0/1", "ssh_protocol_0/0/0", ssh_protocol_tu0, "ssh_status_0/0/0"  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"""
+    req = """SELECT db_devices.kod, region_mon, name, sdwan, status_tu0, status_tu1, "link_Gi0/0/0", "link_Gi0/0/1", "link_tu1", "lte", region_text, "ssh_protocol_0/0/1", ssh_protocol_tu1, "ssh_status_0/0/1", "ssh_protocol_0/0/0", ssh_protocol_tu0, "ssh_status_0/0/0", close  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"""
     rows = bd_fetchall(req)
 
     for row in rows:
@@ -49,8 +49,9 @@ def index(request):
         name = f"{row[0]} {row[2]}"
         name = ser_name(name)[:23]
         name = row[2][:15]
+        close = row[17]
         # print(name)
-        st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000)
+        st1, st2, sd = status(row[4], row[5], row[3], row[6], row[7], row[8], row[9], ssh_protocol_001, ssh_protocol_tu1, ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000, close)
         temp = [sd, st1, st2, name]
         temp_reg = ['⚪️','⚪️', '⚪️', row[10]]
         try:
@@ -73,11 +74,12 @@ def index(request):
     num = int(len(rows)/6)
     i = 0
     s_i = 0
-    req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0 FROM db_devices
+    req = """SELECT db_devices.kod, name, down, disk, ip, cam, cam_down, script, db_devices.loopback0, db_registrator.close FROM db_devices
     LEFT JOIN db_registrator ON db_devices.kod = db_registrator.kod WHERE db_registrator.ip is not null ORDER BY name, db_registrator.hostname"""
     rows = bd_fetchall(req)
     # rows = sql_select(f"SELECT down FROM registrator WHERE kod = {row[0]}")
     for row in rows:
+        close = row[9]
         if row[2] == 1:
             reg, d, c, s = "🟥", "🟥",  "🟥", "🟥"
         else:
@@ -87,6 +89,8 @@ def index(request):
             s = disk(row[7])
             if reg == "⬜️":
                 c = "⬜️"
+            if close:
+                c = '⬛️'
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = name.split()
@@ -176,7 +180,7 @@ def registrator(row):
     return st
 
 
-def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_protocol_tu1,ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000):
+def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_protocol_tu1,ssh_status_001, ssh_protocol_000, ssh_protocol_tu0, ssh_status_000, close):
     # print(s1, s2, sdwan, linkgi0, linkgi1, linktu0, linktu1, linktu20)
     ch1, ch2, sd = '🟡','🟡', "⚪"
     if s1 == 1:
@@ -225,4 +229,6 @@ def status(s1, s2, sdwan, linkgi0, linkgi1, linktu1, lte, ssh_protocol_001, ssh_
     if sdwan == 0:
         # sd = "❌"
         sd = "⚫"
+    if close:
+        ch1, ch2, sd = '⚫️','⚫️','⚫️'
     return ch1, ch2, sd
