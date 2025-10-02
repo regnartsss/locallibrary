@@ -82,6 +82,10 @@ def index(request):
         close = row[9]
         if row[2] == 1:
             reg, d, c, s = "🟥", "🟥",  "🟥", "🟥"
+            d = '⬛️'
+            reg = '⬛️'
+            c = '⬛️'
+            s = '⬛️'
         else:
             reg = registrator(row[2])
             d = disk(row[3])
