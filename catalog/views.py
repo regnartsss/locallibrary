@@ -82,10 +82,6 @@ def index(request):
         close = row[9]
         if row[2] == 1:
             reg, d, c, s = "🟥", "🟥",  "🟥", "🟥"
-            d = '⬛️'
-            reg = '⬛️'
-            c = '⬛️'
-            s = '⬛️'
         else:
             reg = registrator(row[2])
             d = disk(row[3])
@@ -93,11 +89,11 @@ def index(request):
             s = disk(row[7])
             if reg == "⬜️":
                 c = "⬜️"
-            if close:
-                d = '⬛️'
-                reg = '⬛️'
-                c = '⬛️'
-                s = '⬛️'
+        if close:
+            d = '⬛️'
+            reg = '⬛️'
+            c = '⬛️'
+            s = '⬛️'
         # name = f"{row[0]} {row[1]}"
         name = row[1]
         name = name.split()
