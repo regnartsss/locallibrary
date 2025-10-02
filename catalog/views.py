@@ -36,7 +36,7 @@ def index(request):
     tab = 0
     s = {}
     # stat_one = (sorted(dat.items(), key=lambda k: k[1]["region"]))
-    req = """SELECT db_devices.kod, region_mon, name, sdwan, status_tu0, status_tu1, "link_Gi0/0/0", "link_Gi0/0/1", "link_tu1", "lte", region_text, "ssh_protocol_0/0/1", ssh_protocol_tu1, "ssh_status_0/0/1", "ssh_protocol_0/0/0", ssh_protocol_tu0, "ssh_status_0/0/0", close  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"""
+    req = """SELECT db_devices.kod, region_mon, name, sdwan, status_tu0, status_tu1, "link_Gi0/0/0", "link_Gi0/0/1", "link_tu1", "lte", region_text, "ssh_protocol_0/0/1", ssh_protocol_tu1, "ssh_status_0/0/1", "ssh_protocol_0/0/0", ssh_protocol_tu0, "ssh_status_0/0/0", db_devices.close  FROM db_devices LEFT JOIN db_status ON db_devices.kod = db_status.kod WHERE db_status.kod is not null and hostname is not null ORDER BY name"""
     rows = bd_fetchall(req)
 
     for row in rows:
